@@ -7,7 +7,8 @@ let player = {
   rating: 1849,
   points: 0,
   color: 0,
-  played: [] // game objects
+  played: [] // game objects,
+  //teamnum: 0   //not sure where to access team information from
 }
 
 
@@ -31,4 +32,16 @@ function played (player1, player2) {
     }
   }
   return false
+}
+
+// function sameteam (player1, player2){  //potential same-team-checker
+//    return (player1.teamnum == player2.teamnum)
+// }
+
+function colorcheck (player1, player2){  //same-color-checker
+  return (player1.color == player2.color)
+}
+
+function checkscores (player1, player2){ //same-score-checker
+  return (player1.points == player2.points)
 }

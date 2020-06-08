@@ -39,9 +39,9 @@ function played (player1, player2) {
 // }
 
 function colorcheck (player1, player2){  //same-color-checker
-  return (player1.color == player2.color)
+  return (player1.color != player2.color)
 }
 
 function checkscores (player1, player2){ //same-score-checker
-  return (player1.points == player2.points)
+  return (player1.points - player2.points)
 }

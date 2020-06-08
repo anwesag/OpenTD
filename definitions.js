@@ -39,7 +39,7 @@ function played (player1, player2) {
 // }
 
 function colorcheck (player1, player2){  //same-color-checker
-  return (player1.color != player2.color)
+  return (player1.color * player2.color <= 0)
 }
 
 function checkscores (player1, player2){ //same-score-checker

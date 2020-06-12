@@ -41,6 +41,11 @@ function game_init(player1, player2) {
 }
 
 //// TODO: Function that can mark the result of a game
+function game_result(game, result) {
+  game.result = result
+  if(result ==='w')
+    for(le
+}
 
 // TODO: Print a game
 
@@ -70,10 +75,10 @@ function sameteam (player1, player2){  //potential same-team-checker
     return false
 }
 
-function color_check (player1, player2){  //same-color-checker
+function colorcheck (player1, player2){  //same-color-checker
   return (player1.color * player2.color <= 0)
 }
 
-function check_scores (player1, player2){ //same-score-checker
+function checkscores (player1, player2){ //same-score-checker
   return (player1.points - player2.points)
 }

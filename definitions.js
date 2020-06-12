@@ -49,7 +49,7 @@ function player_exists(id) {
 
 }
 //add a team
-function add_team(player1, team) {
+function add_team(id, team) {
   player1.played.push(team)
   return true
 }

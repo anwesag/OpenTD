@@ -25,36 +25,6 @@ let teams = {
 }
 
 let games = []
-let players = []
-
-//create a player
-function player_init(firstName, lastName, id, rating, teams) {
-  let currPlayer = {
-    firstName: firstName,
-    lastName: lastName,
-    id: id,
-    rating: rating,
-    points: 0,
-    color: 0,
-    played: [], // game objects,
-    teams: teams   //not sure where to access team information from
-  }
-
-  players.push(currPlayer)
-  return currPlayer
-}
-
-//return player if they exist, else return NULL
-function player_exists(id) {
-
-}
-//add a team
-function add_team(player1, team) {
-  player1.played.push(team)
-  return true
-}
-
-
 
 //player1 is white, player 2 is black
 function game_init(player1, player2) {
@@ -90,7 +60,7 @@ function played (player1, player2) {
   return false
 }
 
-function same_team (player1, player2){  //potential same-team-checker
+function sameteam (player1, player2){  //potential same-team-checker
   for(let i = 0; i < player1.teams.length; i++){
     for(let j = 0; j < player2.teams.length; j++){
       if(player1.teams[i] === player2.teams[j]){

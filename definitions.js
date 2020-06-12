@@ -25,6 +25,7 @@ let teams = {
 }
 
 let games = []
+<<<<<<< HEAD
 let players = []
 
 //create a player
@@ -55,6 +56,8 @@ function add_team(id, team) {
 }
 
 
+=======
+>>>>>>> 9e2e8bd6355025ed34cf05b6829e580122eb8859
 
 //player1 is white, player 2 is black
 function game_init(player1, player2) {
@@ -71,6 +74,11 @@ function game_init(player1, player2) {
 }
 
 //// TODO: Function that can mark the result of a game
+function game_result(game, result) {
+  game.result = result
+  if(result ==='w')
+    for(le
+}
 
 // TODO: Print a game
 
@@ -90,7 +98,7 @@ function played (player1, player2) {
   return false
 }
 
-function same_team (player1, player2){  //potential same-team-checker
+function sameteam (player1, player2){  //potential same-team-checker
   for(let i = 0; i < player1.teams.length; i++){
     for(let j = 0; j < player2.teams.length; j++){
       if(player1.teams[i] === player2.teams[j]){
@@ -100,10 +108,10 @@ function same_team (player1, player2){  //potential same-team-checker
     return false
 }
 
-function color_check (player1, player2){  //same-color-checker
+function colorcheck (player1, player2){  //same-color-checker
   return (player1.color * player2.color <= 0)
 }
 
-function check_scores (player1, player2){ //same-score-checker
+function checkscores (player1, player2){ //same-score-checker
   return (player1.points - player2.points)
 }

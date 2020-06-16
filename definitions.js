@@ -132,22 +132,23 @@ function single_game(game){
   for(let i = 0; i < players.length; i++){
     if(players[i].id == game.id_white){
       console.log(players[i].firstName + " " + players[i].lastName + " (" +
-      players[i].points + ", " + players[i].rating + ")")
+      players[i].points + ", " + players[i].rating + ")    ")
     }
   }
   for(let i = 0; i < players.length; i++){
     if(players[i].id == game.id_black){
       console.log(players[i].firstName + " " + players[i].lastName + " (" +
-      players[i].points + ", " + players[i].rating + ")/n")
+      players[i].points + ", " + players[i].rating + ")\n")
     }
   }
 }
 
 // TODO: Print all games
-function all_games(games){ //array of games
-  console.log("    White        Black    ")
+function all_games(){ //array of games
+  console.log("          White                     Black    ")
+  //          Anwesa Goswami (1.0, 6782)    Mihir Bafna (1.0, 7625)
   for(let i = 0; i < games.length; i++){
-    single_game(game)
+    single_game(games[i])
   }
 }
 

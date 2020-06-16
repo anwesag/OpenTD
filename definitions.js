@@ -1,5 +1,5 @@
 // template for a person
-
+//2D array
 let player = {
   firstName: 'Mihir',
   lastName: 'Bafna',
@@ -28,7 +28,7 @@ let teams = {
 
 let games = []
 let players = []
-
+let rounds = []
 //create a player
 function player_init(firstName, lastName, id, rating, teams) {
   let currPlayer = {
@@ -95,7 +95,7 @@ function game_init(player1, player2, round) {
     result = 'n'
   }
 
-  games.push(currGame)
+  rounds[round].push(currGame)
   player1.played[round] = currGame
   player1.color++
   player2.played[round] = currGame
@@ -145,19 +145,23 @@ function single_game(game){
   }
 }
 
-// TODO: Print all games
-function all_games(){ //array of games
+
+// TODO: Print all games in a round
+function all_games_round(roundNum){
+  console.log("ROUND " + roundNum)
   console.log("          White                     Black    ")
-  //          Anwesa Goswami (1.0, 6782)    Mihir Bafna (1.0, 7625)
-  for(let i = 0; i < games.length; i++){
-    single_game(games[i])
+  for(let i = 0; i < rounds[roundNum].length; i++){
+      single_game(rounds[roundNum][i])
+    }
   }
 }
 
-// TODO: Print all games in a round
-
-
-
+// TODO: Print all games and rounds
+function all_games(){ //array of games
+  for(let i = 0; i < rounds.length; i++){
+    all_games_round(i)
+  }
+}
 
 function played (player1, player2) {
   for (let i = 0; i < player.played.length; i++) {

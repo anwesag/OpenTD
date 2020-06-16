@@ -25,7 +25,6 @@ let teams = {
 }
 
 let games = []
-<<<<<<< HEAD
 let players = []
 
 //create a player
@@ -56,8 +55,6 @@ function add_team(id, team) {
 }
 
 
-=======
->>>>>>> 9e2e8bd6355025ed34cf05b6829e580122eb8859
 
 //player1 is white, player 2 is black
 function game_init(player1, player2) {
@@ -76,13 +73,52 @@ function game_init(player1, player2) {
 //// TODO: Function that can mark the result of a game
 function game_result(game, result) {
   game.result = result
-  if(result ==='w')
-    for(le
+  if(result ==='w'){
+    for(let i = 0; i < players.length; i++){
+      if(players[i].id == game.id_white){
+        players[i].points += 1.0
+      }
+    }
+  }
+  else if(result ==='b'){
+    for(let i = 0; i < players.length; i++){
+      if(players[i].id == game.id_black){
+        players[i].points += 1.0
+      }
+    }
+  }
+  else if(result ==='d'){
+    for(let i = 0; i < players.length; i++){
+      if(players[i].id == game.id_white || players[i].id == game.id_black){
+        players[i].points += 0.5
+      }
+    }
+  }
 }
 
 // TODO: Print a game
+function single_game(game){
+  for(let i = 0; i < players.length; i++){
+    if(players[i].id == game.id_white){
+      console.log(players[i].firstName + " " + players[i].lastName + " (" +
+      players[i].points + ", " + players[i].rating + ")")
+    }
+  }
+  for(let i = 0; i < players.length; i++){
+    if(players[i].id == game.id_black){
+      console.log(players[i].firstName + " " + players[i].lastName + " (" +
+      players[i].points + ", " + players[i].rating + ")/n")
+    }
+  }
+}
 
 // TODO: Print all games
+function all_games(games){ //array of games
+  console.log("    White        Black    ")
+  for(let i = 0; i < games.length; i++){
+    single_game(game)
+  }
+}
 
 // TODO: Print all games in a round
 

@@ -16,6 +16,7 @@ let player = {
 let game = {
   id_white: 12345,
   id_black: 45123,
+  round: -1,
   result: 'w' // w  = white won, b = black won, d = draw, n = no result
 }
 
@@ -86,17 +87,18 @@ function print_players() {
 
 
 //player1 is white, player 2 is black
-function game_init(player1, player2) {
+function game_init(player1, player2, round) {
   let currGame = {
     id_white: player1.id,
     id_black: player2.id,
+    round: round
     result = 'n'
   }
 
   games.push(currGame)
-  player1.played.push(currGame)
+  player1.played[round] = currGame
   player1.color++
-  player2.played.push(currGame)
+  player2.played[round] = currGame
   player2.color--
   return currGame
 }

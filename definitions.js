@@ -7,6 +7,7 @@ let player = {
   rating: 1849,
   points: 0,
   color: 0,
+  check_in: false,
   played: [], // game objects,
   teams: []   //not sure where to access team information from
 }
@@ -25,7 +26,6 @@ let teams = {
 }
 
 let games = []
-<<<<<<< HEAD
 let players = []
 
 //create a player
@@ -47,17 +47,43 @@ function player_init(firstName, lastName, id, rating, teams) {
 
 //return player if they exist, else return NULL
 function player_exists(id) {
-
+  for(let i = 0; i < players.length; i++) {
+    if(players[i].id === id) {
+      return players[i]
+    }
+  }
+  return NULL
 }
+
 //add a team
-function add_team(id, team) {
+function add_team(player1, team) {
   player1.played.push(team)
   return true
 }
 
+//remove a team from a player
+function remove_team(player1, team) {
+  const index = player1.teams.indexOf(team)
+  if(index > -1) {
+    array.splice(index, 1)
+  }
+}
 
-=======
->>>>>>> 9e2e8bd6355025ed34cf05b6829e580122eb8859
+function check_in(player1) {
+  player1.check_in = true
+}
+
+function check_out() {
+  player.check_out = false
+}
+
+
+function print_players() {
+  players.forEach((item, i) => {
+    console.log(i + " " + item.firstName + " " + item.lastName + " " + item.rating + " "+ item.points)
+  });
+}
+
 
 //player1 is white, player 2 is black
 function game_init(player1, player2) {
@@ -69,7 +95,9 @@ function game_init(player1, player2) {
 
   games.push(currGame)
   player1.played.push(currGame)
+  player1.color++
   player2.played.push(currGame)
+  player2.color--
   return currGame
 }
 

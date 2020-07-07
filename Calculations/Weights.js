@@ -14,7 +14,7 @@ const rule_1 = 100
 
 function already_played(player1, player2) {
   weight = 0
-  for game in player1.played {
+  for (var game in player1.played) {
     if(game.id_white === player2.id || game.id_black === player2.id){
       weight -= rule_1
     }

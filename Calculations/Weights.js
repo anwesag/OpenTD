@@ -12,7 +12,7 @@ const Games = require('../../Base/games.js')
 //Rule 1: Avoid meeting players twice. Subtract 100 everytime played this player 1 or more times
 const rule_1 = 100
 
-function already_played(player1, player2) {
+function rule_1_already_played(player1, player2) {
   weight = 0
   for (var game in player1.played) {
     if(game.id_white === player2.id || game.id_black === player2.id){
@@ -27,7 +27,7 @@ function already_played(player1, player2) {
 */
 const rule_2 = 40
 
-function similar_scores(player1, player2){
+function rule_2_similar_scores(player1, player2){
   return rule_2 - (10 * Math.abs(player1.points - player2.points))
 }
 

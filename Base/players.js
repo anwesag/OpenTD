@@ -80,6 +80,7 @@ function sameteam (player1, player2){  //potential same-team-checker
     return false
 }
 
+
 function colorcheck (player1, player2){  //same-color-checker
   return (player1.color * player2.color <= 0)
 }

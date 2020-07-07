@@ -1,3 +1,6 @@
+const Players = require('../../Base/players.js')
+const Games = require('../../Base/games.js')
+
 /* This file pairs a round. As part of the round, we give an event a weight.
 *  These stay constants, but can(and as rules change, should) be tweaked to improve
 *  reliability.
@@ -25,10 +28,18 @@ const rule_3 = 15
 */
 const rule_4 = 5
 
+function rule_4_equalizing_colors(player1, color_player_1) {
+  return rule_4 - Math.abs(player1.color)
+}
+
 /* Rule 5: Alternate colors: Play someone so the color you play is different from last round. Not added if does not happen.
 */
 const rule_5 = 1
 
-function rule_5_alternate_colors(player1, player2, color_player_1) {
-
+function rule_5_alternate_colors(player1, color_player_1) {
+  //Check if color matches from previous game
+  if(Games.get_color(player1, player1.played[player.played.length - 1]) != color_player_1) {
+    return rule_5
+  }
+  return 0
 }

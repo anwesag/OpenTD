@@ -76,3 +76,12 @@ function all_games(){ //array of games
     all_games_round(i)
   }
 }
+
+//1 is white, -1 is black
+function get_color(game, player) {
+  if(player.id == game.id_white) {
+    return 1
+  }  else {
+    return -1
+  }
+}

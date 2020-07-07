@@ -33,7 +33,7 @@ const rule_5 = 1
 
 
 function rule_1_already_played(player1, player2) {
-  weight = 0
+  let weight = 0
   for (var game in player1.played) {
     if(game.id_white === player2.id || game.id_black === player2.id){
       weight -= rule_1
@@ -47,6 +47,25 @@ function rule_2_similar_scores(player1, player2){
   return rule_2 - (10 * Math.abs(player1.points - player2.points))
 }
 
+//assume array is even
+function rule_3_split(player1, player2, array) {
+  const half = Math.ceil(array.length / 2);
+
+  let player1_index = -1
+  let player2_index = -1
+  for(let i = 0; i < array.length; i++) {
+    if(array[i] === player1) {
+      player1_index = i
+    }
+
+    if(array[i] === player2) {
+      player2_index = i
+    }
+  }
+
+  return rule_3 - Math.abs((player1_index % half) - (player2_index % half))
+
+}
 
 
 function rule_4_equalizing_colors(player1, color_player_1) {

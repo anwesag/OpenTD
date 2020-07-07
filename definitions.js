@@ -26,7 +26,6 @@ let teams = {
   players: []
 }
 
-let games = []
 let players = []
 let rounds = []
 //create a player

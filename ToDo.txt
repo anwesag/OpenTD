@@ -1,0 +1,22 @@
+What do we have done(tested)?
+
+
+
+
+What do we have done (not tested)?
+
+Global Definitions for Players
+Global Definitions for Rounds
+Checkers to be used for Pairings
+Weights Defined
+Format printing for players and rounds
+
+
+What do we have left?
+
+Functions to determine Weights
+Algorithmically determine pairings based on weights
+Standings
+Discord commands
+Setup a tournament
+Testing

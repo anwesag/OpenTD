@@ -49,6 +49,9 @@ function rule_2_similar_scores(player1, player2){
 
 //assume array is even
 function rule_3_split(player1, player2, array) {
+  if(!(array.includes(player2))){
+    return 0
+  }
   const half = Math.ceil(array.length / 2);
 
   let player1_index = -1

@@ -11,8 +11,20 @@
 
 
 function run_round(array) {
+  playing_array = array
   //Determine if bye is needed
+  if(array.length % 2 == 1) {
+    playing_array = integrate_bye(array)
+  }
   //Create 2D array to store everything
+  let letters = new Array(3); // Indices 0,1,2
+
+
+// Loop through the array, adding a
+// new array to each location
+  for (let i = 0; i < letters.length; i++) {
+    letters[i] = new Array(3);// new array of 3 locations
+  } 
   //Seperate into intervals
   //Run rules for every player
 }

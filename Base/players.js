@@ -7,7 +7,9 @@ let player = {
   color: 0,
   check_in: false,
   played: [], // game objects,
-  teams: []   //not sure where to access team information from
+  teams: [],   //not sure where to access team information from
+  byes: 0
+
 }
 
 

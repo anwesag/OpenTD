@@ -12,26 +12,44 @@
 
 function run_round(array) {
   playing_array = array
+
   //Determine if bye is needed
   if(array.length % 2 == 1) {
-    playing_array = integrate_bye(array)
+    playing_array = integrate_bye(playing_array)
   }
+
   //Create 2D array to store everything
-  let letters = new Array(3); // Indices 0,1,2
+  let points = new Array(playing_array.length)
+  for (let i = 0; i < points.length; i++) {
+    points[i] = new Array(playing_array.length)
+  }
 
-
-// Loop through the array, adding a
-// new array to each location
-  for (let i = 0; i < letters.length; i++) {
-    letters[i] = new Array(3);// new array of 3 locations
-  } 
   //Seperate into intervals
+  interval_seperation(playing_array)
   //Run rules for every player
+  run_rules(playing_array)
 }
 
 //If there is an odd number of players
 function integrate_bye(array) {
+  let index_lowest = array.length - 1
+  let byes_lowest = array[index_lowest].byes
 
+  for(let i = array.length - 1; i >= 0; i--) {
+    if(array[i].byes === 0) {
+      index_lowest = i
+      byes_lowest = array[i].byes
+      break;
+    }
+
+    if(array[i].byes < byes_lowest) {
+      index_lowest = i
+      byes_lowest = array[i].byes
+    }
+  }
+
+  array.splice(index_lowest, 1);
+  return array
 }
 
 

@@ -55,5 +55,14 @@ function integrate_bye(array) {
 
 //Every time, return an array of indexes where points are split up
 function interval_seperation(array) {
-
+  var intervals = {}
+  let begin = 0
+  let end = 0
+  while(end < array.length){
+    while(array[begin].points === array[end+1].points){
+      end += 1
+    }
+    invervals[array[begin].points] = [begin, end]
+    begin = end
+  }
 }

@@ -24,7 +24,7 @@ function run_round(array) {
 // new array to each location
   for (let i = 0; i < letters.length; i++) {
     letters[i] = new Array(3);// new array of 3 locations
-  } 
+  }
   //Seperate into intervals
   //Run rules for every player
 }
@@ -37,5 +37,14 @@ function integrate_bye(array) {
 
 //Every time, return an array of indexes where points are split up
 function interval_seperation(array) {
-
+  var intervals = {}
+  let begin = 0
+  let end = 0
+  while(end < array.length){
+    while(array[begin].points === array[end+1].points){
+      end += 1
+    }
+    invervals[array[begin].points] = [begin, end]
+    begin = end
+  }
 }

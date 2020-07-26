@@ -79,7 +79,7 @@ function rule_4_equalizing_colors(player1, color_player_1) {
 
 function rule_5_alternate_colors(player1, color_player_1) {
   //Check if color matches from previous game
-  if(Games.get_color(player1, player1.played[player.played.length - 1]) != color_player_1) {
+  if(Games.get_color(player1.played[player.played.length - 1], player1) != color_player_1) {
     return rule_5
   }
   return 0

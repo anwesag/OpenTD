@@ -27,11 +27,11 @@ function run_round(array, round_num) {
   }
 
   //Seperate into intervals
-  interval_seperation(playing_array)
+  intervals = interval_seperation(playing_array)
   //Run rules for every player
-  run_rules(playing_array)
+  points = run_rules(playing_array, intervals)
 
-  let games = pair_everyone(grid, playing_array, round_num)
+  let games = interval_seperation
 }
 
 //If there is an odd number of players
@@ -62,18 +62,32 @@ function interval_seperation(array) {
   var intervals = {}
   let begin = 0
   let end = 0
-  while(end < array.length){
+  while(end < array.length - 1){
     while(array[begin].points === array[end+1].points){
       end += 1
     }
     invervals[array[begin].points] = [begin, end]
     begin = end
   }
+  return intervals
 }
 
-function  run_rules(array) {
-    for(let i = 0; i < array.length; i++) {
 
+function run_rules(array, intervals) {
+  //2D array to return
+  let points = new Array(array.length)
+  for (let i = 0; i < points.length; i++) {
+    points[i] = new Array(array.length)
+  }
+
+  for(let i = 0; i < array.length; i++) {
+    for(let j = 0; j < array.length; j++){
+      same_points_array = array.slice(intervals[array[i].points][0], intervals[array[i].points][1])
+      points[i][j] = rule_1_already_played(array[i], array[j]) +
+                     rule_2_similar_scores(array[i], array[j]) +
+                     rule_3_split(array[i], array[j], same_points_array) +
+                     max(rule_4_equalizing_colors(array[i], 1), rule_4_equalizing_colors(array[i], -1)) +
+                     max(rule_5_alternate_colors(array[i], 1), rule_5_alternate_colors(array[i], -1))
     }
   }
 
@@ -113,4 +127,9 @@ function pair_everyone(grid, array, round_num) {
   }
   return to_return
 
+}
+
+function max(one, two){
+  if(one > two) return one
+  return two
 }

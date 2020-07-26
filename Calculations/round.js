@@ -1,5 +1,7 @@
 //This will run an entire round and create the games needed
 const Rules = require(./weights.js)
+const Players = require('../../Base/players.js')
+const Games = require('../../Base/games.js')
 
 /*
 * We need to seperate out the array into categories based on points
@@ -10,7 +12,7 @@ const Rules = require(./weights.js)
 */
 
 
-function run_round(array) {
+function run_round(array, round_num) {
   playing_array = array
 
   //Determine if bye is needed
@@ -28,6 +30,8 @@ function run_round(array) {
   interval_seperation(playing_array)
   //Run rules for every player
   run_rules(playing_array)
+
+  let games = pair_everyone(grid, playing_array, round_num)
 }
 
 //If there is an odd number of players
@@ -65,11 +69,48 @@ function interval_seperation(array) {
     invervals[array[begin].points] = [begin, end]
     begin = end
   }
+}
 
-
-  run_rules(array) {
+function  run_rules(array) {
     for(let i = 0; i < array.length; i++) {
 
     }
   }
+
+
+
+function pair_everyone(grid, array, round_num) {
+  let completed = new Array(array.length)
+  let to_return = []
+  for (let i = 0; i < array.length; i++) {
+    completed[i] = 0
+  }
+
+  let largest = 0
+  let largest_index = -1
+  let sum = 0;
+  for(let i = 0; i < array.length; i++) {
+    for(let j = 0; j < array.length; j++) {
+      if((i == j)) {
+        continue
+      }
+      sum = grid[i][j] + grid[j][i]
+      if((sum > largest || largest_index == -1) && completed[j] === 0) {
+        largest = sum
+        largest_index = j
+      }
+    }
+    completed[largest_index] = 1
+    completed[i] = 1
+    //Determine color
+    if(array[i].color >= 0 && array[largest_index] <= 0) {
+      to_return.push(Games.game_init(array[i], array[largest_index], round_num))
+    } else {
+      to_return.push(Games.game_init(array[largest_index], array[i], round_num))
+    }
+    largest_index = -1
+
+  }
+  return to_return
+
 }

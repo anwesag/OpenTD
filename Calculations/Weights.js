@@ -72,7 +72,8 @@ function rule_3_split(player1, player2, array) {
 
 
 function rule_4_equalizing_colors(player1, color_player_1) {
-  return rule_4 - Math.abs(player1.color)
+  let fake_number = player1.color + color_player_1
+  return rule_4 - Math.abs(fake_number)
 }
 
 

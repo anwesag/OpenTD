@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/MBafna19/OpenTD/issues"
   },
-  "homepage": "https://github.com/MBafna19/OpenTD#readme"
+  "homepage": "https://github.com/MBafna19/OpenTD#readme",
+  "dependencies": {
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "discord.js": "^12.2.0",
+    "winston": "^3.3.3"
+  }
 }

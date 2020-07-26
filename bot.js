@@ -19,5 +19,3 @@ bot.on("message", async message => {
 });
 
 bot.login(botSettings.token);
-
-console.log(test);

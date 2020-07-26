@@ -1,5 +1,5 @@
 //This will run an entire round and create the games needed
-
+const Rules = require(./weights.js)
 
 /*
 * We need to seperate out the array into categories based on points
@@ -64,5 +64,12 @@ function interval_seperation(array) {
     }
     invervals[array[begin].points] = [begin, end]
     begin = end
+  }
+
+
+  run_rules(array) {
+    for(let i = 0; i < array.length; i++) {
+
+    }
   }
 }

@@ -4,7 +4,7 @@
   "description": "OpenTD project",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,8 @@
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
     "discord.js": "^12.2.0",
     "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "jest": "^26.2.2"
   }
 }

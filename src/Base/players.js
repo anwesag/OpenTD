@@ -12,9 +12,10 @@ let player = {
 
 }
 
+let players = []
 
 //create a player
-function player_init(firstName, lastName, id, rating, teams) {
+exports.player_init = (firstName, lastName, id, rating, teams) => {
   let currPlayer = {
     firstName: firstName,
     lastName: lastName,
@@ -31,39 +32,43 @@ function player_init(firstName, lastName, id, rating, teams) {
 }
 
 //return player if they exist, else return NULL
-function player_exists(id) {
+exports.player_exists = (id) => {
   for(let i = 0; i < players.length; i++) {
     if(players[i].id === id) {
       return players[i]
     }
   }
-  return NULL
+  return -1
+}
+
+exports.add_team = (player1, team) => {
+  player1.teams.push(team)
 }
 
 //remove a team from a player
-function remove_team(player1, team) {
+exports.remove_team = (player1, team) => {
   const index = player1.teams.indexOf(team)
   if(index > -1) {
-    array.splice(index, 1)
+    player1.teams.splice(index, 1)
   }
 }
 
-function check_in(player1) {
+exports.check_in = (player1)  => {
   player1.check_in = true
 }
 
-function check_out() {
+exports.check_out = () => {
   player.check_out = false
 }
 
 
-function print_players() {
+exports.print_players = () => {
   players.forEach((item, i) => {
     console.log(i + " " + item.firstName + " " + item.lastName + " " + item.rating + " "+ item.points)
   });
 }
 
-function played (player1, player2) {
+exports.played = (player1, player2) => {
   for (let i = 0; i < player.played.length; i++) {
     if (player1[i].id_white === player2.id || player1[i].id_black === player2.id) {
       return true
@@ -72,21 +77,26 @@ function played (player1, player2) {
   return false
 }
 
-function sameteam (player1, player2){  //potential same-team-checker
-  for(let i = 0; i < player1.teams.length; i++){
-    for(let j = 0; j < player2.teams.length; j++){
-      if(player1.teams[i] === player2.teams[j]){
+exports.sameteam = (player1, player2) => {  //potential same-team-checker
+  for(var player1 of player1.teams){
+    for(var player2 of player2.teams){
+      if(player1 === player2){
         return true
       }
     }
+  }
     return false
 }
 
 
-function colorcheck (player1, player2){  //same-color-checker
+exports.colorcheck = (player1, player2) => {  //same-color-checker
   return (player1.color * player2.color <= 0)
 }
 
-function checkscores (player1, player2){ //same-score-checker
+exports.checkscores = (player1, player2) => { //same-score-checker
   return (player1.points - player2.points)
+}
+
+exports.getPlayerArray = () => {
+  return players
 }

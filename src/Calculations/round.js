@@ -1,7 +1,7 @@
 //This will run an entire round and create the games needed
-const Rules = require(./weights.js)
-const Players = require('../../Base/players.js')
-const Games = require('../../Base/games.js')
+const Rules = require('./weights.js')
+const Players = require('../Base/players.js')
+const Games = require('../Base/games.js')
 
 /*
 * We need to seperate out the array into categories based on points
@@ -12,30 +12,24 @@ const Games = require('../../Base/games.js')
 */
 
 
-function run_round(array, round_num) {
-  playing_array = array
+exports.run_round = (array, round_num) => {
 
   //Determine if bye is needed
-  if(array.length % 2 == 1) {
-    playing_array = integrate_bye(playing_array)
-  }
-
-  //Create 2D array to store everything
-  let points = new Array(playing_array.length)
-  for (let i = 0; i < points.length; i++) {
-    points[i] = new Array(playing_array.length)
-  }
+  playing_array = integrate_bye(array)
 
   //Seperate into intervals
   intervals = interval_seperation(playing_array)
   //Run rules for every player
-  points = run_rules(playing_array, intervals)
+  let points = run_rules(playing_array, intervals)
 
-  let games = interval_seperation
+  let games = pair_everyone(points, playing_array, round_num)
 }
 
 //If there is an odd number of players
-function integrate_bye(array) {
+exports.integrate_bye = (array) => {
+  if(array.length % 2 == 0) {
+    return array
+  }
   let index_lowest = array.length - 1
   let byes_lowest = array[index_lowest].byes
 
@@ -58,42 +52,46 @@ function integrate_bye(array) {
 
 
 //Every time, return an array of indexes where points are split up
-function interval_seperation(array) {
+exports.interval_seperation = (array) => {
   var intervals = {}
   let begin = 0
   let end = 0
   while(end < array.length - 1){
-    while(array[begin].points === array[end+1].points){
+    console.log(end)
+    while(end < array.length && array[begin].points === array[end].points){
+      console.log(end)
       end += 1
     }
-    invervals[array[begin].points] = [begin, end]
+    intervals[array[begin].points] = [begin, end - 1]
     begin = end
   }
   return intervals
 }
 
 
-function run_rules(array, intervals) {
+exports.run_rules = (array, intervals) => {
   //2D array to return
   let points = new Array(array.length)
   for (let i = 0; i < points.length; i++) {
     points[i] = new Array(array.length)
   }
 
-  for(let i = 0; i < array.length; i++) {
-    for(let j = 0; j < array.length; j++){
-      same_points_array = array.slice(intervals[array[i].points][0], intervals[array[i].points][1])
-      points[i][j] = rule_1_already_played(array[i], array[j]) +
-                     rule_2_similar_scores(array[i], array[j]) +
-                     rule_3_split(array[i], array[j], same_points_array) +
-                     max(rule_4_equalizing_colors(array[i], 1), rule_4_equalizing_colors(array[i], -1)) +
-                     max(rule_5_alternate_colors(array[i], 1), rule_5_alternate_colors(array[i], -1))
+  for(var player1 of array) {
+    for(var player2 of array){
+      same_points_array = array.slice(intervals[player1.points][0], intervals[player1.points][1])
+      points[i][j] = rule_1_already_played(player1, player2) +
+                     rule_2_similar_scores(player1, player2) +
+                     rule_3_split(player1, player2, same_points_array) +
+                     Math.max(rule_4_equalizing_colors(player1, 1), rule_4_equalizing_colors(player1, -1)) +
+                     Math.max(rule_5_alternate_colors(player1, 1), rule_5_alternate_colors(player1, -1))
     }
   }
+  return points
+}
 
 
 
-function pair_everyone(grid, array, round_num) {
+exports.pair_everyone = (grid, array, round_num) => {
   let completed = new Array(array.length)
   let to_return = []
   for (let i = 0; i < array.length; i++) {
@@ -129,7 +127,4 @@ function pair_everyone(grid, array, round_num) {
 
 }
 
-function max(one, two){
-  if(one > two) return one
-  return two
-}
+
